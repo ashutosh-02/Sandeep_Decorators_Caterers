@@ -7,6 +7,7 @@ body {
   line-height: 1.6;
 }
 
+/* Header Navigation */
 header nav {
   display: flex;
   justify-content: space-between;
@@ -54,6 +55,61 @@ nav ul li a:focus {
   outline: none;
 }
 
+/* Hamburger menu button - hidden by default */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  width: 28px;
+  height: 22px;
+  justify-content: space-between;
+  margin-left: 20px;
+}
+.hamburger span {
+  display: block;
+  height: 3px;
+  background: #FFD700;
+  border-radius: 2px;
+  transition: 0.3s ease;
+}
+
+/* Responsive for smaller screens - hamburger and nav menu */
+@media (max-width: 768px) {
+  nav ul {
+    position: fixed;
+    top: 60px;
+    right: -100%; /* hide off screen */
+    width: 250px;
+    height: calc(100% - 60px);
+    background: #191919;
+    flex-direction: column;
+    gap: 25px;
+    padding: 30px 20px;
+    transition: right 0.3s ease;
+    z-index: 999;
+  }
+  nav ul.active {
+    right: 0; /* show menu */
+  }
+  nav ul li a {
+    font-size: 1.2em;
+  }
+  .hamburger {
+    display: flex;
+  }
+}
+
+/* Hamburger animation when active */
+.hamburger.active span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
 /* Hero Section */
 .hero {
   background: url('../assets/home.jpg') center/cover no-repeat fixed;
@@ -64,7 +120,8 @@ nav ul li a:focus {
   text-align: center;
   color: #fff;
   position: relative;
-  padding: 0 20px;
+  padding: 40px 20px;
+  transition: background 0.3s ease, min-height 0.3s ease;
 }
 
 .hero::before {
@@ -78,13 +135,11 @@ nav ul li a:focus {
   transition: background 0.3s ease;
 }
 
-.hero:hover::before {
-  background: rgba(25, 25, 25, 0.90);
-}
-
 .hero-content {
+  position: relative;
   z-index: 1;
   max-width: 900px;
+  margin: 0 auto;
 }
 
 .hero h1 {
@@ -102,12 +157,11 @@ nav ul li a:focus {
   text-shadow: 0 0 6px #222;
 }
 
-/* Buttons */
 .btn-primary,
 .btn-secondary {
   display: inline-block;
   padding: 12px 28px;
-  margin-right: 15px;
+  margin: 10px 10px 0 10px;
   border-radius: 30px;
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
@@ -116,6 +170,8 @@ nav ul li a:focus {
   border: none;
   transition: all 0.3s ease;
   box-shadow: 0 2px 10px rgba(255, 215, 0, 0.25);
+  min-width: 140px;
+  text-align: center;
 }
 
 .btn-primary {
@@ -123,6 +179,7 @@ nav ul li a:focus {
   color: #191919;
   border: 2px solid #B88746;
 }
+
 .btn-primary:hover,
 .btn-primary:focus {
   background-color: #B88746;
@@ -136,12 +193,45 @@ nav ul li a:focus {
   color: #FFD700;
   border: 2px solid #FFD700;
 }
+
 .btn-secondary:hover,
 .btn-secondary:focus {
   background-color: #B88746;
   color: #FFF9E5;
   box-shadow: 0 0 20px #FFD700;
   outline: none;
+}
+
+/* Mobile-specific: remove background image, solid bg, smaller text and buttons */
+@media (max-width: 480px) {
+  .hero {
+    background: #191919;  /* solid background instead of image */
+    min-height: auto;
+    padding: 30px 10px;
+  }
+  .hero::before {
+    background: none;
+  }
+  .hero h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  .hero p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+  }
+  .btn-primary,
+  .btn-secondary {
+    width: 90%;
+    min-width: auto;
+    padding: 12px 0;
+    font-size: 1.2em;
+    margin: 10px auto;
+  }
+  .hero-content {
+    max-width: 340px;
+    margin: 0 auto;
+  }
 }
 
 /* Highlights Section */
@@ -184,6 +274,31 @@ nav ul li a:focus {
   line-height: 1.4;
 }
 
+/* Grid Gallery for Gallery page */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* Responsive columns */
+  gap: 20px;
+  padding: 30px 7vw;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.gallery-grid img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 3px 15px rgba(184, 135, 70, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(184, 135, 70, 0.5);
+}
+
 /* Footer */
 footer {
   background-color: #191919;
@@ -213,7 +328,6 @@ footer a:focus {
   outline: none;
 }
 
-/* Social Links */
 footer .social a {
   color: #FFD700;
   font-size: 1.5rem;
@@ -227,36 +341,9 @@ footer .social a:focus {
   outline: none;
 }
 
+/* Responsive Layouts */
 
-/* Grid Gallery for Gallery page */
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 25px;
-  padding: 30px 7vw;
-}
-
-.gallery-grid img {
-  width: 100%;
-  border-radius: 15px;
-  box-shadow: 0 3px 15px rgba(184, 135, 70, 0.3);
-  transition: transform 0.3s ease;
-}
-.gallery-grid img:hover {
-  transform: scale(1.05);
-  cursor: pointer;
-}
-
-/* Responsive Adjustments */
-@media (max-width: 960px) {
-  .hero h1 {
-    font-size: 2.2rem;
-  }
-  .hero p {
-    font-size: 1.1rem;
-  }
-}
-
+/* Tablet screens */
 @media (max-width: 768px) {
   nav ul {
     flex-direction: column;
@@ -270,15 +357,30 @@ footer .social a:focus {
     max-width: 400px;
     margin: 0 auto 35px;
   }
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
 }
 
-@media (max-width: 480px) {
+/* Medium phones and small tablets */
+@media (max-width: 960px) {
   .hero h1 {
-    font-size: 1.7rem;
+    font-size: 2.2rem;
   }
-  .btn-primary,
-  .btn-secondary {
-    padding: 10px 20px;
+  .hero p {
+    font-size: 1.1rem;
+  }
+}
+
+/* General mobile improvements */
+@media (max-width: 360px) {
+  nav ul li a {
+    font-size: 1em;
+  }
+  .highlight h3 {
+    font-size: 1.4em;
+  }
+  .highlight p {
     font-size: 1em;
   }
 }
