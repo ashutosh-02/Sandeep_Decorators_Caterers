@@ -1,20 +1,20 @@
-/* General Reset and Fonts */
+/* -------------------- General Reset & Fonts -------------------- */
 body {
   margin: 0;
   font-family: 'Open Sans', sans-serif;
-  background: #FFF9E5; /* Creamy neutral background */
+  background: #FFF9E5;
   color: #2C2C2C;
   line-height: 1.6;
 }
 
-/* Header Navigation */
+/* -------------------- Header & Navigation -------------------- */
 header nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 18px 7vw;
-  background: #191919; /* Deep charcoal black */
-  color: #FFD700; /* Gold */
+  background: #191919;
+  color: #FFD700;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
   position: sticky;
   top: 0;
@@ -55,7 +55,7 @@ nav ul li a:focus {
   outline: none;
 }
 
-/* Hamburger menu button - hidden by default */
+/* Hamburger menu - hidden by default */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -73,12 +73,12 @@ nav ul li a:focus {
   transition: 0.3s ease;
 }
 
-/* Responsive for smaller screens - hamburger and nav menu */
+/* Responsive nav styles */
 @media (max-width: 768px) {
   nav ul {
     position: fixed;
     top: 60px;
-    right: -100%; /* hide off screen */
+    right: -100%;
     width: 250px;
     height: calc(100% - 60px);
     background: #191919;
@@ -89,7 +89,7 @@ nav ul li a:focus {
     z-index: 999;
   }
   nav ul.active {
-    right: 0; /* show menu */
+    right: 0;
   }
   nav ul li a {
     font-size: 1.2em;
@@ -98,8 +98,7 @@ nav ul li a:focus {
     display: flex;
   }
 }
-
-/* Hamburger animation when active */
+/* Hamburger animation */
 .hamburger.active span:nth-child(1) {
   transform: translateY(9px) rotate(45deg);
 }
@@ -110,9 +109,8 @@ nav ul li a:focus {
   transform: translateY(-9px) rotate(-45deg);
 }
 
-/* Hero Section */
+/* -------------------- Carousel Hero Section -------------------- */
 .hero {
-  background: url('../assets/home.jpg') center/cover no-repeat fixed;
   min-height: 400px;
   display: flex;
   align-items: center;
@@ -121,27 +119,30 @@ nav ul li a:focus {
   color: #fff;
   position: relative;
   padding: 40px 20px;
-  transition: background 0.3s ease, min-height 0.3s ease;
+  transition: background-image 1s ease;
+  background: #191919;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
-
 .hero::before {
   content: "";
   position: absolute;
   left: 0; top: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(25, 25, 25, 0.75);
+  width: 100%; height: 100%;
+  background: rgba(25, 25, 25, 0.68);
   z-index: 0;
-  transition: background 0.3s ease;
+  transition: background 0.5s ease;
 }
-
 .hero-content {
   position: relative;
   z-index: 1;
   max-width: 900px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-
 .hero h1 {
   font-family: 'Montserrat', sans-serif;
   font-size: 3rem;
@@ -149,14 +150,12 @@ nav ul li a:focus {
   color: #FFD700;
   text-shadow: 0 0 8px #B88746;
 }
-
 .hero p {
   font-size: 1.4rem;
   margin-bottom: 30px;
   font-weight: 600;
   text-shadow: 0 0 6px #222;
 }
-
 .btn-primary,
 .btn-secondary {
   display: inline-block;
@@ -173,13 +172,11 @@ nav ul li a:focus {
   min-width: 140px;
   text-align: center;
 }
-
 .btn-primary {
   background-color: #FFD700;
   color: #191919;
   border: 2px solid #B88746;
 }
-
 .btn-primary:hover,
 .btn-primary:focus {
   background-color: #B88746;
@@ -187,13 +184,11 @@ nav ul li a:focus {
   box-shadow: 0 0 20px #FFD700;
   outline: none;
 }
-
 .btn-secondary {
   background-color: #191919;
   color: #FFD700;
   border: 2px solid #FFD700;
 }
-
 .btn-secondary:hover,
 .btn-secondary:focus {
   background-color: #B88746;
@@ -202,12 +197,12 @@ nav ul li a:focus {
   outline: none;
 }
 
-/* Mobile-specific: remove background image, solid bg, smaller text and buttons */
+/* Mobile - no hero background image, compact layout */
 @media (max-width: 480px) {
   .hero {
-    background: #191919;  /* solid background instead of image */
-    min-height: auto;
-    padding: 30px 10px;
+    background: #191919 !important;
+    min-height: 280px;
+    padding: 24px 5px;
   }
   .hero::before {
     background: none;
@@ -225,7 +220,7 @@ nav ul li a:focus {
     width: 90%;
     min-width: auto;
     padding: 12px 0;
-    font-size: 1.2em;
+    font-size: 1.1em;
     margin: 10px auto;
   }
   .hero-content {
@@ -234,7 +229,7 @@ nav ul li a:focus {
   }
 }
 
-/* Highlights Section */
+/* -------------------- Highlights / Feature Cards -------------------- */
 .highlights {
   display: flex;
   justify-content: space-around;
@@ -243,7 +238,6 @@ nav ul li a:focus {
   gap: 30px;
   flex-wrap: wrap;
 }
-
 .highlight {
   flex: 1 1 280px;
   background: #fff;
@@ -253,13 +247,11 @@ nav ul li a:focus {
   text-align: center;
   transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
-
 .highlight:hover,
 .highlight:focus-within {
   box-shadow: 0 6px 40px rgba(184, 135, 70, 0.35);
   transform: translateY(-6px);
 }
-
 .highlight h3 {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
@@ -267,23 +259,33 @@ nav ul li a:focus {
   color: #B88746;
   margin-bottom: 15px;
 }
-
 .highlight p {
   font-size: 1.1em;
   color: #2C2C2C;
   line-height: 1.4;
 }
 
-/* Grid Gallery for Gallery page */
+/* Responsive Highlights */
+@media (max-width: 768px) {
+  .highlights {
+    flex-direction: column;
+    padding: 40px 4vw;
+  }
+  .highlight {
+    max-width: 400px;
+    margin: 0 auto 35px;
+  }
+}
+
+/* -------------------- Gallery Grid -------------------- */
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* Responsive columns */
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 20px;
   padding: 30px 7vw;
   max-width: 1100px;
   margin: 0 auto;
 }
-
 .gallery-grid img {
   width: 100%;
   height: 180px;
@@ -293,13 +295,37 @@ nav ul li a:focus {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
 }
-
 .gallery-grid img:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 20px rgba(184, 135, 70, 0.5);
 }
 
-/* Footer */
+/* Gallery grid responsive columns */
+@media (max-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+}
+
+/* -------------------- About Page Customizations -------------------- */
+.since-badge {
+  display: inline-block;
+  background: #FFD700;
+  color: #191919;
+  font-weight: 700;
+  border-radius: 16px;
+  padding: 6px 18px;
+  margin-bottom: 15px;
+  font-size: 1.07em;
+  letter-spacing: 0.035em;
+  box-shadow: 0 2px 6px rgba(184, 135, 70, 0.12);
+}
+.features-list strong {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.13em;
+}
+
+/* -------------------- Footer -------------------- */
 footer {
   background-color: #191919;
   color: #FFD700;
@@ -316,7 +342,6 @@ footer address {
   margin-bottom: 12px;
   font-weight: bold;
 }
-
 footer a {
   color: #FFD700;
   text-decoration: underline;
@@ -327,7 +352,6 @@ footer a:focus {
   color: #B88746;
   outline: none;
 }
-
 footer .social a {
   color: #FFD700;
   font-size: 1.5rem;
@@ -341,28 +365,7 @@ footer .social a:focus {
   outline: none;
 }
 
-/* Responsive Layouts */
-
-/* Tablet screens */
-@media (max-width: 768px) {
-  nav ul {
-    flex-direction: column;
-    gap: 1.5em;
-  }
-  .highlights {
-    flex-direction: column;
-    padding: 40px 4vw;
-  }
-  .highlight {
-    max-width: 400px;
-    margin: 0 auto 35px;
-  }
-  .gallery-grid {
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  }
-}
-
-/* Medium phones and small tablets */
+/* -------------------- General Mobile Improvements -------------------- */
 @media (max-width: 960px) {
   .hero h1 {
     font-size: 2.2rem;
@@ -371,8 +374,6 @@ footer .social a:focus {
     font-size: 1.1rem;
   }
 }
-
-/* General mobile improvements */
 @media (max-width: 360px) {
   nav ul li a {
     font-size: 1em;
